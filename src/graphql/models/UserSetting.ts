@@ -6,8 +6,8 @@ export class UserSetting {
   userId: number;
 
   @Field({ defaultValue: false })
-  receiveNotifications: boolean;
+  receiveNotifications?: boolean;
 
   @Field({ defaultValue: false })
-  receiveEmails: boolean;
+  receiveEmails?: boolean;
 }

@@ -3,7 +3,7 @@ import { UserSetting } from './UserSetting';
 
 @ObjectType()
 export class User {
-  @Field((type) => Int)
+  @Field(() => Int)
   id: number;
 
   @Field()
