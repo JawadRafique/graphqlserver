@@ -11,6 +11,7 @@ import {
 import { User } from '../models/User';
 import { mockUsers } from 'src/__mocks__/mockUsers';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
+import { CreateUserInput } from '../utils/CreateUserInput';
 
 let incrementalId = 3;
 @Resolver(() => User)
@@ -31,10 +32,8 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  createUser(
-    @Args('username') username: string,
-    @Args('displayName', { nullable: true }) displayName: string,
-  ) {
+  createUser(@Args('createUserData') createUserData: CreateUserInput) {
+    const { username, displayName } = createUserData;
     const newUser: User = {
       id: ++incrementalId,
       username,
