@@ -2,6 +2,7 @@ import { UserSetting } from './../models/UserSetting';
 import {
   Args,
   Int,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -11,7 +12,8 @@ import { User } from '../models/User';
 import { mockUsers } from 'src/__mocks__/mockUsers';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
 
-@Resolver((of) => User)
+let incrementalId = 3;
+@Resolver(() => User)
 export class UserResolver {
   @Query(() => User, { nullable: true })
   getUserById(@Args('id', { type: () => Int }) id: number) {
@@ -26,5 +28,19 @@ export class UserResolver {
   @ResolveField(() => UserSetting, { name: 'settings', nullable: true })
   getUserSettings(@Parent() user: User) {
     return mockUserSettings.find((setting) => setting.userId === user.id);
+  }
+
+  @Mutation(() => User)
+  createUser(
+    @Args('username') username: string,
+    @Args('displayName', { nullable: true }) displayName: string,
+  ) {
+    const newUser: User = {
+      id: ++incrementalId,
+      username,
+      displayName,
+    };
+    mockUsers.push(newUser);
+    return newUser;
   }
 }

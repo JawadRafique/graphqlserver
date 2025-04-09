@@ -1,4 +1,6 @@
-export const mockUsers = [
+import { User } from 'src/graphql/models/User';
+
+export const mockUsers: User[] = [
   {
     id: 1,
     username: 'jawad',
