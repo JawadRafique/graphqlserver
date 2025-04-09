@@ -14,6 +14,6 @@ export class User {
   })
   displayName?: string;
 
-  @Field({ nullable: true })
+  @Field()
   settings?: UserSetting;
 }
