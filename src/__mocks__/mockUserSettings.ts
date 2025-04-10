@@ -1,4 +1,4 @@
-import { UserSetting } from 'src/graphql/models/UserSetting';
+import { UserSetting } from 'src/user-settings/entities/user-setting.entity';
 
 export const mockUserSettings: UserSetting[] = [
   {

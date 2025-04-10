@@ -1,4 +1,3 @@
-import { UserSetting } from './../models/UserSetting';
 import {
   Args,
   Int,
@@ -8,14 +7,15 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { User } from '../models/User';
 import { mockUsers } from 'src/__mocks__/mockUsers';
 import { mockUserSettings } from 'src/__mocks__/mockUserSettings';
-import { CreateUserInput } from '../utils/CreateUserInput';
+import { User } from './entities/user.entity';
+import { CreateUserInput } from './dto/create-user.input';
+import { UserSetting } from 'src/user-settings/entities/user-setting.entity';
 
 let incrementalId = 3;
 @Resolver(() => User)
-export class UserResolver {
+export class UsersResolver {
   @Query(() => User, { nullable: true })
   getUserById(@Args('id', { type: () => Int }) id: number) {
     return mockUsers.find((user) => user.id === id);

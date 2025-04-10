@@ -1,4 +1,4 @@
-import { User } from 'src/graphql/models/User';
+import { User } from 'src/users/entities/user.entity';
 
 export const mockUsers: User[] = [
   {
